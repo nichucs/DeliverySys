@@ -1,0 +1,61 @@
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent" 
+             android:layout_height="match_parent"
+              tools:context=".RouteDetailFragment">
+
+  <fragment android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+
+ <!--  <LinearLayout android:orientation="vertical" 
+                android:layout_width="fill_parent" 
+                android:layout_height="wrap_content" 
+                android:layout_gravity="top"
+                android:background="#A0000000">
+
+
+    <TextView  android:id="@+id/route_detail"
+              android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:textColor="#FFFFFF"
+              android:padding="10dip"
+              android:textSize="13sp"/>
+
+
+
+    <LinearLayout android:orientation="vertical" 
+                  android:visibility="gone"
+                  android:id="@+id/details"
+                  android:layout_width="fill_parent" 
+                  android:layout_height="wrap_content" 
+                  android:layout_gravity="top"
+                  android:padding="10dip">
+
+      <ListView android:id="@+id/orders_list"
+                android:layout_width="fill_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_height="wrap_content" />  
+
+
+    </LinearLayout>
+
+    <TextView android:id="@+id/details_button"
+              android:layout_height="wrap_content"
+              android:layout_width="fill_parent"
+              android:textColor="#FFFFFF"
+              android:padding="5dip"
+              android:gravity="center"                
+              android:clickable="true"
+              android:background="#80000000"
+              android:text="Show details..."
+              android:textSize="11sp"/>
+  </LinearLayout>  -->
+
+
+</FrameLayout>

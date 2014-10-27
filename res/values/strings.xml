@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Delivery Routing</string>
+    <string name="title_route_detail">Route Detail</string>
+    <string name="userid">User Id</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+
+</resources>
