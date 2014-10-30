@@ -16,6 +16,15 @@
  
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <permission
+        android:name="com.example.delivervpi.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.delivervpi.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
  
@@ -63,7 +72,21 @@
      <!-- debug key -->
 	 <meta-data android:name="com.google.android.maps.v2.API_KEY"
 				android:value="AIzaSyDFEvM92W3BWhVf_xAVN5lcKlq2FoS71JQ"/>
-				   
+	 <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.example.delivervpi" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".GCMIntentService" /> 
 <service android:name="MonitorService"></service>
 <receiver android:name="NetworkReceiver">
     <intent-filter >

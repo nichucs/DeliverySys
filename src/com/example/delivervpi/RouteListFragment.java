@@ -107,7 +107,7 @@ public class RouteListFragment extends ListFragment {
 //		}else{
 			Datas db=new Datas(getActivity());
 			db.open();
-			if(db.isEmpty())
+			if(db.isEmpty() || ((RouteListActivity)getActivity()).from_login)
 				loadList();
 			else
 				loadListFromDB();

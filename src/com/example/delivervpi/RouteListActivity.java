@@ -56,6 +56,11 @@ public class RouteListActivity extends FragmentActivity implements
 			// 'activated' state when touched.
 			((RouteListFragment) getSupportFragmentManager().findFragmentById(
 					R.id.route_list)).setActivateOnItemClick(true);
+		}else{
+			if(from_login){
+				RouteListFragment list_frag1=(RouteListFragment) getSupportFragmentManager().findFragmentById(R.id.route_list);
+				list_frag1.loadList();
+			}
 		}
 
 		// TODO: If exposing deep links into your app, handle intents here.

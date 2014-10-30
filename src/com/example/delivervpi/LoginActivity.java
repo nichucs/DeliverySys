@@ -21,6 +21,7 @@ import com.example.delivervpi.dummy.Datas;
 import com.example.delivervpi.utils.MyStringAsync;
 import com.example.delivervpi.utils.SendEmailAsyncTask;
 import com.example.delivervpi.utils.SessionManager;
+import com.google.android.gcm.GCMRegistrar;
 
 public class LoginActivity extends Activity {
 
@@ -54,6 +55,7 @@ public class LoginActivity extends Activity {
                 	ArrayList<NameValuePair> nvp=new ArrayList<NameValuePair>();
                 	nvp.add(new BasicNameValuePair("username", username.trim()));
                 	nvp.add(new BasicNameValuePair("password", password.trim()));
+                	nvp.add(new BasicNameValuePair("regId", session.getGCMkey()));
 
 
                     MyStringAsync async=new MyStringAsync(LoginActivity.this, nvp){
@@ -72,7 +74,7 @@ public class LoginActivity extends Activity {
 								JSONObject obj=new JSONObject(result);
 								if(obj.getString("status").equals("OK")){
 
-	                                 
+	                                 GCMRegistrar.setRegisteredOnServer(getApplicationContext(), true);
 	                                 // Creating user login session
 	                                 session.createLoginSession(username, obj.getJSONObject("message").getString("id"));
 	                                  Datas db=new Datas(getBaseContext());
@@ -110,9 +112,24 @@ public class LoginActivity extends Activity {
 	}
 	@Override
 	protected void onResume() {
-		if(session.checkLogin())
+		if(session.checkLogin()){
 			finish();
+		}
+		else{
+			if(session.getGCMkey()==null){
+				GCMRegistrar.checkDevice(this);
+				String regId = GCMRegistrar.getRegistrationId(this);
+				if (regId.equals("")) {
+					// Registration is not present, register now with GCM			
+					GCMRegistrar.register(this, CommonUtilities.SENDER_ID);
+				} else {
+					session.storeGCMkey(regId);
+				}
+			}
+		}
 		super.onResume();
 	}
+	
+	
 	
 }

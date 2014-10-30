@@ -2,6 +2,7 @@ package com.example.delivervpi.utils;
 
 import java.util.HashMap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,7 +30,7 @@ public class SessionManager {
      
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
-     
+    public static final String KEY_GCM = "gcmkey";
     public static final String KEY_USER = "user";
     public static final String KEY_UID = "id";
      
@@ -50,12 +51,24 @@ public class SessionManager {
         // Storing name in pref
         editor.putString(KEY_USER, name);
          
-        // Storing email in pref
+        // Storing id in pref
         editor.putString(KEY_UID, id);
          
         // commit changes
         editor.commit();
-    }   
+    } 
+    /**
+     * For Google cloude messaging registration purpose
+     * @param key
+     */
+     public void storeGCMkey(String key){
+    	 editor.putString(KEY_GCM, key);
+    	 editor.commit();
+     }
+     public String getGCMkey(){
+    	 return pref.getString(KEY_GCM, null);
+     }
+     
      
     /**
      * Check login method wil check user login status
@@ -73,7 +86,10 @@ public class SessionManager {
              
             // Add new Flag to start new Activity
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-             
+
+			if(((Activity)_context).getIntent().hasExtra("refresh") && ((Activity)_context).getIntent().getBooleanExtra("refresh", false)){
+                i.putExtra("login", true);
+			}
             // Staring Login Activity
             _context.startActivity(i);
             return true;
