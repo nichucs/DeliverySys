@@ -19,7 +19,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 
 public class MyAsync extends AsyncTask<String, Integer, MyRoutes> {
@@ -56,7 +55,7 @@ public class MyAsync extends AsyncTask<String, Integer, MyRoutes> {
 				}
 				url=url.substring(0, url.length()-3);
 			}
-			Log.d("Nzm", "URL:"+url);
+//			Log.d("Nzm", "URL:"+url);
 //http://maps.googleapis.com/maps/api/directions/json?origin=1.355296,103.882355&destination=1.351863,103.876861&sensor=true&waypoints=1.355296,103.882355|1.351863,103.876861|1.337791,103.889221
 
 			post=new HttpPost(url);
@@ -64,7 +63,7 @@ public class MyAsync extends AsyncTask<String, Integer, MyRoutes> {
 				response=client.execute(post);
 				HttpEntity entity=response.getEntity();
 				result=EntityUtils.toString(entity);
-				Log.d("Nzm", "api result:"+result);
+//				Log.d("Nzm", "api result:"+result);
 			} catch (ClientProtocolException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -101,7 +100,7 @@ public class MyAsync extends AsyncTask<String, Integer, MyRoutes> {
 							
 							JSONObject dist=legsobj.getJSONObject("distance");
 							int d=dist.getInt("value");
-							Log.d("Nzm", "distance of leg "+j+":"+d);
+//							Log.d("Nzm", "distance of leg "+j+":"+d);
 							
 //							JSONArray steps=legsobj.getJSONArray("steps");
 //							list=new ArrayList<LatLng>();

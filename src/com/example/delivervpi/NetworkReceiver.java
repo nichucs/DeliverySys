@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.example.delivervpi.dummy.BulkModel;
 import com.example.delivervpi.dummy.Datas;
@@ -27,7 +26,7 @@ public class NetworkReceiver extends BroadcastReceiver {
 		ConnectionDetector cnn=new ConnectionDetector(context);
 		if(cnn.isConnectingToInternet())
 		{
-			Log.d("Nzm", "Net connected");
+//			Log.d("Nzm", "Net connected");
 			JSONObject str=new JSONObject();
 			JSONArray order_arr=new JSONArray();
 			JSONArray loc_arr=new JSONArray();
@@ -53,7 +52,7 @@ public class NetworkReceiver extends BroadcastReceiver {
 			}
 			str.put("orders", order_arr);
 			str.put("locations", loc_arr);
-			Log.d("Nzm", "BLK:"+str.toString());
+//			Log.d("Nzm", "BLK:"+str.toString());
 			if(order_arr.length()>0 || loc_arr.length()>0){
 				ArrayList<NameValuePair> nvp2=new ArrayList<NameValuePair>();
 				nvp2.add(new BasicNameValuePair("request",str.toString()));
@@ -78,7 +77,7 @@ public class NetworkReceiver extends BroadcastReceiver {
 				
 			}
 		}else{
-			Log.d("Nzm", "net disconnected");
+//			Log.d("Nzm", "net disconnected");
 		}
 	}
 

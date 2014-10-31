@@ -18,7 +18,6 @@ import org.apache.http.util.EntityUtils;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class MyStringAsync extends AsyncTask<String, Integer, String> {
 
@@ -56,7 +55,7 @@ public class MyStringAsync extends AsyncTask<String, Integer, String> {
 			response=client.execute(post,localContext);
 			entity=response.getEntity();
 			 res=EntityUtils.toString(entity);
-			Log.d("Nzm", "Response:"+res);
+//			Log.d("Nzm", "Response:"+res);
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

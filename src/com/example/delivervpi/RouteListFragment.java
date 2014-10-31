@@ -19,7 +19,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -190,8 +189,8 @@ public class RouteListFragment extends ListFragment {
 	    acmi = (AdapterContextMenuInfo) menuInfo;
 	    Route obj = (Route) lv.getItemAtPosition(acmi.position);
 	    selectedRoute=obj;
-	    Log.d("Nzm", "Selected route id:"+selectedRoute.getRoute_id());
-	    Log.d("Nzm", "selected Route status:"+obj.getStatus());
+//	    Log.d("Nzm", "Selected route id:"+selectedRoute.getRoute_id());
+//	    Log.d("Nzm", "selected Route status:"+obj.getStatus());
 	    menu.setHeaderTitle("Options");
 	    switch(obj.getStatus()){
 	    case 1:
@@ -218,7 +217,7 @@ public class RouteListFragment extends ListFragment {
 //			if(!onDelivery){
 //				Toast.makeText(getActivity(), "TODO: Mark On Delivery", Toast.LENGTH_LONG).show();
 				db.open();
-				Log.d("Nzm", "selected route id:"+selectedRoute.getRoute_id()+" time:"+date_format.format( Calendar.getInstance(Locale.getDefault()).getTime()));
+//				Log.d("Nzm", "selected route id:"+selectedRoute.getRoute_id()+" time:"+date_format.format( Calendar.getInstance(Locale.getDefault()).getTime()));
 				db.markRouteOnDelivery(""+selectedRoute.getRoute_id(),date_format.format( Calendar.getInstance(Locale.getDefault()).getTime()));
 				db.close();
 				ConnectionDetector connection=new ConnectionDetector(getActivity());
@@ -429,7 +428,7 @@ public class RouteListFragment extends ListFragment {
 								String routId=route.getString("routId");
 								String sts=route.getString("status");
 //								if(sts.equals("2")) onDelivery=true;
-								Log.d("Nzm", "Routes:"+routId);
+//								Log.d("Nzm", "Routes:"+routId);
 								 getOrders(routId,route.getString("dateAdded"),sts);
 							}
 						}else{
@@ -450,7 +449,7 @@ public class RouteListFragment extends ListFragment {
 
 	protected void getOrders(String routId, String dateAdded, String sts) {
 		final String routIdF=routId; final String dateAddedF=dateAdded, status=sts; 
-		Log.d("Nzm", "final routid:"+routIdF);
+//		Log.d("Nzm", "final routid:"+routIdF);
 		final ArrayList<Order> res=new ArrayList<DummyContent.Order>();
 		ArrayList<NameValuePair> nvp=new ArrayList<NameValuePair>();
 		nvp.add(new BasicNameValuePair("routeId",routId));
@@ -473,10 +472,10 @@ public class RouteListFragment extends ListFragment {
 							if(orders.length()>0){
 								for(int j=0;j<orders.length();j++){
 									JSONObject o=orders.getJSONObject(j);
-									Log.d("Nzm", "New order loc id:"+o.getInt("id"));
+//									Log.d("Nzm", "New order loc id:"+o.getInt("id"));
 									res.add(new Order(o.getInt("id"),o.getInt("orderId"), o.getString("customerId"), o.getString("location"), o.getDouble("lat"), o.getDouble("lng"), (o.getInt("status")==1?false:true), o.getString("dateAdded"), (o.getInt("status")==1?null:o.getString("dateUpdate"))));
 								}
-								Log.d("Nzm", "on post nvp routeid:"+this.getNvp().get(0).getValue());
+//								Log.d("Nzm", "on post nvp routeid:"+this.getNvp().get(0).getValue());
 								Route r=new Route(Integer.parseInt(this.getNvp().get(0).getValue()), res, Integer.parseInt(status), dateAddedF, null, null);
 								DummyContent.addRoute(r);
 								Datas db=new Datas(getActivity());

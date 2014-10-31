@@ -6,7 +6,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.google.android.gcm.GCMBaseIntentService;
 
@@ -23,7 +22,7 @@ public class GCMIntentService extends GCMBaseIntentService {
      **/
     @Override
     protected void onRegistered(Context context, String registrationId) {
-        Log.i(TAG, "Device registered: regId = " + registrationId);
+//        Log.i(TAG, "Device registered: regId = " + registrationId);
         CommonUtilities.displayMessage(context, "Your device registred with GCM");
 //        Log.d("NAME", MainActivity.name);
 //        ServerUtilities.register(context, MainActivity.name, MainActivity.email, registrationId);
@@ -34,7 +33,7 @@ public class GCMIntentService extends GCMBaseIntentService {
      * */
     @Override
     protected void onUnregistered(Context context, String registrationId) {
-        Log.i(TAG, "Device unregistered");
+//        Log.i(TAG, "Device unregistered");
         CommonUtilities.displayMessage(context, "gcm_unregistered");
 //        ServerUtilities.unregister(context, registrationId);
     }
@@ -44,7 +43,7 @@ public class GCMIntentService extends GCMBaseIntentService {
      * */
     @Override
     protected void onMessage(Context context, Intent intent) {
-        Log.i(TAG, "Received message");
+//        Log.i(TAG, "Received message");
         String message = intent.getExtras().getString("price");
         
         CommonUtilities.displayMessage(context, message);
@@ -57,7 +56,7 @@ public class GCMIntentService extends GCMBaseIntentService {
      * */
     @Override
     protected void onDeletedMessages(Context context, int total) {
-        Log.i(TAG, "Received deleted messages notification");
+//        Log.i(TAG, "Received deleted messages notification");
         String message = "deleted "+total+ " messages";// getString(R.string.gcm_deleted, total);
         CommonUtilities.displayMessage(context, message);
         // notifies user
@@ -69,14 +68,14 @@ public class GCMIntentService extends GCMBaseIntentService {
      * */
     @Override
     public void onError(Context context, String errorId) {
-        Log.i(TAG, "Received error: " + errorId);
+//        Log.i(TAG, "Received error: " + errorId);
         CommonUtilities.displayMessage(context, "gcm_error");
     }
 
     @Override
     protected boolean onRecoverableError(Context context, String errorId) {
         // log message
-        Log.i(TAG, "Received recoverable error: " + errorId);
+//        Log.i(TAG, "Received recoverable error: " + errorId);
         CommonUtilities.displayMessage(context,"gcm_recoverable_error");
         return super.onRecoverableError(context, errorId);
     }

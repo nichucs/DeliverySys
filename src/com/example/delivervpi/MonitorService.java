@@ -18,7 +18,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
-import android.util.Log;
 
 import com.example.delivervpi.utils.MyStringAsync;
 import com.example.delivervpi.utils.SessionManager;
@@ -75,7 +74,7 @@ public class MonitorService extends Service implements LocationListener{
 							LocationManager.NETWORK_PROVIDER,
 							MIN_TIME_BW_UPDATES,
 							MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-					Log.d("Network", "Network");
+//					Log.d("Network", "Network");
 					if (locationManager != null) {
 						location = locationManager
 								.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
@@ -92,7 +91,7 @@ public class MonitorService extends Service implements LocationListener{
 								LocationManager.GPS_PROVIDER,
 								MIN_TIME_BW_UPDATES,
 								MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-						Log.d("GPS Enabled", "GPS Enabled");
+//						Log.d("GPS Enabled", "GPS Enabled");
 						if (locationManager != null) {
 							location = locationManager
 									.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -181,7 +180,7 @@ public class MonitorService extends Service implements LocationListener{
             dialog.cancel();
             }
         });
-        Log.d("Nzm", "Alertdialog for GPS");
+//        Log.d("Nzm", "Alertdialog for GPS");
         // Showing Alert Message
         alertDialog.show();
 	}
@@ -197,9 +196,9 @@ public class MonitorService extends Service implements LocationListener{
 	
 	@Override
 	public void onCreate() {
-		Log.d("Nzm", "Monitor service start command");
+//		Log.d("Nzm", "Monitor service start command");
 		getLocation();
-		Log.d("Nzm", "Latitude:"+getLatitude()+" and Longitude:"+getLongitude());
+//		Log.d("Nzm", "Latitude:"+getLatitude()+" and Longitude:"+getLongitude());
 //		Toast.makeText(getApplicationContext(),  "Latitude:"+getLatitude()+" and Longitude:"+getLongitude(), Toast.LENGTH_LONG).show();
 		upload(location.getLatitude(), location.getLongitude());
 		super.onCreate();
@@ -210,13 +209,13 @@ public class MonitorService extends Service implements LocationListener{
 	}
 	@Override
 	public void onDestroy() {
-		Log.d("Nzm", "Monitor service ended");
+//		Log.d("Nzm", "Monitor service ended");
 		super.onDestroy();
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
-		Log.d("Nzm", "Location changed:Lat-"+location.getLatitude()+" Long-"+location.getLongitude()+" Time-"+location.getTime());
+//		Log.d("Nzm", "Location changed:Lat-"+location.getLatitude()+" Long-"+location.getLongitude()+" Time-"+location.getTime());
 //		Toast.makeText(getApplicationContext(), "Location changed:Lat-"+location.getLatitude()+" Long-"+location.getLongitude()+" Time-"+location.getTime(), Toast.LENGTH_LONG).show();
 		upload(location.getLatitude(), location.getLongitude());
 	}

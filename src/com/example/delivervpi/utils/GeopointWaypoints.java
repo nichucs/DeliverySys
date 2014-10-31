@@ -3,7 +3,6 @@ package com.example.delivervpi.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -41,7 +40,7 @@ public class GeopointWaypoints {
 		      LatLng p = new LatLng((((double) lat / 1E5)),(((double) lng / 1E5)));
 		      poly.add(p);
 		  }
-		  Log.d("Nzm", "Real points:"+poly);
+//		  Log.d("Nzm", "Real points:"+poly);
 		  return poly;
 		}
 }

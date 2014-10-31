@@ -20,7 +20,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,9 +83,9 @@ public class RouteDetailFragment extends Fragment {
 //			mItem = DummyContent.ITEM_MAP.get(getArguments().getString(
 //					ARG_ROUTE_ID));
 			route=DummyContent.getRoute(getArguments().getInt(ARG_ROUTE_ID));
-			Log.d("Nzm", ""+route);
+//			Log.d("Nzm", ""+route);
 		}else{
-			Log.d("Nzm", "failed to get arguments");
+//			Log.d("Nzm", "failed to get arguments");
 		}
 	}
 
@@ -96,7 +95,7 @@ public class RouteDetailFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_route_detail,
 				container, false);
 		initilizeMap();
-		Log.d("Nzm", "onCreateView");
+//		Log.d("Nzm", "onCreateView");
 		// Show the dummy content as text in a TextView.
 //		if (mItem != null) {
 //			((TextView) rootView.findViewById(R.id.route_detail))
@@ -112,7 +111,7 @@ public class RouteDetailFragment extends Fragment {
 	            googleMap.setMyLocationEnabled(true);
 	            // check if map is created successfully or not
 	            if (googleMap == null) {
-	                Log.d("Nzm", "Create map failed");
+//	                Log.d("Nzm", "Create map failed");
 	            }
 	            else{
 
@@ -138,7 +137,7 @@ public class RouteDetailFragment extends Fragment {
 	            			}
 	            			MarkerOptions marker = new MarkerOptions().position(lt).title(order.getCustomer_id()+"\n<"+order.getDestination()+">"+(order.getDelivered_time()!=null?"\nDelivered at "+order.getDelivered_time():""));
             				marker.snippet(""+order.getLoc_id());
-            				Log.d("Nzm", "Snippet:"+marker.getSnippet());
+//            				Log.d("Nzm", "Snippet:"+marker.getSnippet());
 	            			if(order.isDelivered())
 	            				marker.icon(BitmapDescriptorFactory.fromBitmap(bmGreen));
 	            			else
@@ -206,7 +205,7 @@ public class RouteDetailFragment extends Fragment {
 												cv.put("locationId",mkr.getSnippet());
 												cv.put("date",""+date_format.format( Calendar.getInstance(Locale.getDefault()).getTime()));
 												cv.put("status","3");
-												Log.d("Nzm", "loc status update local save:"+cv.toString());
+//												Log.d("Nzm", "loc status update local save:"+cv.toString());
 												db.open();
 												db.insertLocationBLK(cv);
 												db.close();
@@ -285,12 +284,12 @@ public class RouteDetailFragment extends Fragment {
 		            			if(dlg!=null)
 									dlg.dismiss();
 		            			if(result!=null){
-		            			Log.d("Nzm", "Hm:"+result.getHm());
-		            			Log.d("Nzm", "Bounds:"+result.getMbounds());
-		            			Log.d("Nzm", "Dist:"+result.getDist());
+//		            			Log.d("Nzm", "Hm:"+result.getHm());
+//		            			Log.d("Nzm", "Bounds:"+result.getMbounds());
+//		            			Log.d("Nzm", "Dist:"+result.getDist());
 		            			Datas db=new Datas(getActivity());
 		            			db.open();
-		            			Log.d("Nzm", "polylines in db:"+route.getRoute_id()+":"+db.storePolylines(""+route.getRoute_id(), result.getPoints()));
+//		            			Log.d("Nzm", "polylines in db:"+route.getRoute_id()+":"+db.storePolylines(""+route.getRoute_id(), result.getPoints()));
 		            			db.close();
 		            			googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(result.getMbounds(), 10));
 		            			for(int i=0;i<result.getHm().size();i++)
@@ -316,7 +315,7 @@ public class RouteDetailFragment extends Fragment {
 	            			googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(orders.get(0).getLat(), orders.get(0).getLon()), 13));
 	            		}
 		            }else{
-	            		Log.d("Nzm", "Route null");
+//	            		Log.d("Nzm", "Route null");
 	            	}
 	            	
 //	            	googleMap.setOnMarkerClickListener(new OnMarkerClickListener() {

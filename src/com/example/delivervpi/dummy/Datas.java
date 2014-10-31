@@ -9,7 +9,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.delivervpi.dummy.DummyContent.Order;
 import com.example.delivervpi.dummy.DummyContent.Route;
@@ -98,7 +97,7 @@ public class Datas {
 			List<Order> orders= route.getOrders();
 			for(Order order: orders){
 				ContentValues order_val=new ContentValues();
-				Log.d("Nzm", "insert loc id:"+order.getLoc_id());
+//				Log.d("Nzm", "insert loc id:"+order.getLoc_id());
 				order_val.put("loc_id", ""+order.getLoc_id());
 				order_val.put("order_id", ""+order.getOrder_id());
 				order_val.put("customer_id", order.getCustomer_id());
@@ -110,7 +109,7 @@ public class Datas {
 				order_val.put("status", (order.delivered?3:1));
 				order_val.put("delivery_time", order.getDelivered_time());
 				myDb.insert(ORDERS_TABLE, null, order_val);
-				Log.d("Nzm", "order "+order.getOrder_id()+" inserted for route "+route.getRoute_id());
+//				Log.d("Nzm", "order "+order.getOrder_id()+" inserted for route "+route.getRoute_id());
 			}
 		}
 	}
@@ -125,7 +124,7 @@ public class Datas {
 		List<Order> orders= route.getOrders();
 		for(Order order: orders){
 			ContentValues order_val=new ContentValues();
-			Log.d("Nzm", "insert loc id:"+order.getLoc_id());
+//			Log.d("Nzm", "insert loc id:"+order.getLoc_id());
 			order_val.put("loc_id", ""+order.getLoc_id());
 			order_val.put("order_id", ""+order.getOrder_id());
 			order_val.put("customer_id", order.getCustomer_id());
@@ -137,7 +136,7 @@ public class Datas {
 			order_val.put("status", (order.delivered?3:1));
 			order_val.put("delivery_time", order.getDelivered_time());
 			myDb.insert(ORDERS_TABLE, null, order_val);
-			Log.d("Nzm", "order "+order.getOrder_id()+" inserted for route "+route.getRoute_id());
+//			Log.d("Nzm", "order "+order.getOrder_id()+" inserted for route "+route.getRoute_id());
 		}
 	
 	}
@@ -155,7 +154,7 @@ public class Datas {
 					c.moveToFirst();
 					List<Order> orders=new ArrayList<DummyContent.Order>();
 					do{
-						Log.d("Nzm", "build new loc id:"+c.getInt(c.getColumnIndex("loc_id")));
+//						Log.d("Nzm", "build new loc id:"+c.getInt(c.getColumnIndex("loc_id")));
 						orders.add(new Order(c.getInt(10),c.getInt(1), c.getString(2), c.getString(4), c.getDouble(5), c.getDouble(6), (c.getInt(8)==1?false:true), c.getString(7), c.getString(9)));
 					}while(c.moveToNext());
 					c.moveToPrevious();
@@ -200,28 +199,28 @@ public class Datas {
 		vals.put("status", "2");
 		vals.put("deliver_time_start", s_time);
 		int r=myDb.update(ROUTES_TABLE, vals, "route_id='"+route_id+"'", null);
-		Log.d("Nzm", "update:"+route_id+":"+r);
+//		Log.d("Nzm", "update:"+route_id+":"+r);
 	}
 	public void markRouteDelivered(String route_id, String e_time){
 		ContentValues vals=new ContentValues();
 		vals.put("status", "3");
 		vals.put("deliver_time_end", e_time);
 		int r=myDb.update(ROUTES_TABLE, vals, "route_id='"+route_id+"'", null);
-		Log.d("Nzm", "update:"+r);
+//		Log.d("Nzm", "update:"+r);
 	}
 	public void markRoutePending(String route_id){
 		ContentValues vals=new ContentValues();
 		vals.put("status", "1");
 		vals.putNull("deliver_time_end");
 		int r=myDb.update(ROUTES_TABLE, vals, "route_id='"+route_id+"'", null);
-		Log.d("Nzm", "update:"+r);
+//		Log.d("Nzm", "update:"+r);
 	}
 	public void markOrderDelivered(String loc_id,String time){
 		ContentValues vals=new ContentValues();
 		vals.put("status", "2");
 		vals.put("delivery_time", time);
 		int r=myDb.update(ORDERS_TABLE, vals, "loc_id='"+loc_id+"'", null);
-		Log.d("Nzm", "update:"+r);	
+//		Log.d("Nzm", "update:"+r);	
 	}
 	
 	public void insertOrderBLK(ContentValues cv){
@@ -257,7 +256,7 @@ public class Datas {
 				hm.put("locationId", ""+cr.getString(1));
 				hm.put("date", cr.getString(2));
 				hm.put("status", ""+cr.getInt(3));
-				Log.d("Nzm", "db query loc id:"+hm);
+//				Log.d("Nzm", "db query loc id:"+hm);
 				locs.add(hm);
 			}while(cr.moveToNext());
 		}

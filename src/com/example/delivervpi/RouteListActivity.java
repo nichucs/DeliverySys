@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -72,7 +71,7 @@ public class RouteListActivity extends FragmentActivity implements
 	 */
 	@Override
 	public void onItemSelected(int i) {
-		Log.d("Nzm", "inside onItemSelected arg:"+i);
+//		Log.d("Nzm", "inside onItemSelected arg:"+i);
 		if (mTwoPane) {
 			// In two-pane mode, show the detail view in this activity by
 			// adding or replacing the detail fragment using a

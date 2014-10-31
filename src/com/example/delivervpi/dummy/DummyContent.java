@@ -8,7 +8,6 @@ import java.util.Map;
 import com.example.delivervpi.utils.GeopointWaypoints;
 import com.google.android.gms.maps.model.LatLng;
 
-import android.util.Log;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -61,7 +60,7 @@ public class DummyContent {
 	public static void addRoute(Route route){
 		ROUTES.add(route);
 		ROUTE_MAP.put(route.route_id, route);
-		Log.d("Nzm", "map size: "+ROUTE_MAP.size());
+//		Log.d("Nzm", "map size: "+ROUTE_MAP.size());
 	}
 
 	/**
