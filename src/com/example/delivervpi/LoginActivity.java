@@ -31,7 +31,7 @@ public class LoginActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-		 session = new SessionManager(getApplicationContext());                
+		 session = new SessionManager(this);                
          
 	        // Email, Password input text
 	        txtUsername = (EditText) findViewById(R.id.uid);
