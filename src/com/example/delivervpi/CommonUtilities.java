@@ -33,6 +33,7 @@ public final class CommonUtilities {
     static void displayMessage(Context context, String message) {
         Intent intent = new Intent(DISPLAY_MESSAGE_ACTION);
         intent.putExtra(EXTRA_MESSAGE, message);
+        intent.putExtra("refresh", true);
         context.sendBroadcast(intent);
     }
 }

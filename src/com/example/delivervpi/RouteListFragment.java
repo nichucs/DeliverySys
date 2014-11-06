@@ -477,12 +477,16 @@ public class RouteListFragment extends ListFragment {
 								}
 //								Log.d("Nzm", "on post nvp routeid:"+this.getNvp().get(0).getValue());
 								Route r=new Route(Integer.parseInt(this.getNvp().get(0).getValue()), res, Integer.parseInt(status), dateAddedF, null, null);
-								DummyContent.addRoute(r);
-								Datas db=new Datas(getActivity());
-								db.open();
-								db.insert(r);
-								db.close();
-								setListAdapter(new RouteListAdapter((ArrayList<Route>) DummyContent.ROUTES, getActivity()));
+								if(DummyContent.addRoute(r)){
+									Datas db=new Datas(getActivity());
+									db.open();
+									db.insert(r);
+									db.close();
+									if(getListAdapter()==null)
+										setListAdapter(new RouteListAdapter((ArrayList<Route>) DummyContent.ROUTES, getActivity()));
+									else
+										refreshList((ArrayList<Route>) DummyContent.ROUTES);
+								}
 							}
 					} 
 					}catch (Exception e) {

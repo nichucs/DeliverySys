@@ -94,7 +94,6 @@ public class RouteDetailFragment extends Fragment {
 			Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.fragment_route_detail,
 				container, false);
-		initilizeMap();
 //		Log.d("Nzm", "onCreateView");
 		// Show the dummy content as text in a TextView.
 //		if (mItem != null) {
@@ -102,19 +101,19 @@ public class RouteDetailFragment extends Fragment {
 //					.setText(mItem.content);
 //		}
 
+		initilizeMap();
 		return rootView;
 	}
 	   private void initilizeMap() {
 	        if (googleMap == null) {
 	            googleMap = ((SupportMapFragment) getFragmentManager().findFragmentById(
 	                    R.id.map)).getMap();
-	            googleMap.setMyLocationEnabled(true);
 	            // check if map is created successfully or not
 	            if (googleMap == null) {
 //	                Log.d("Nzm", "Create map failed");
 	            }
 	            else{
-
+		            googleMap.setMyLocationEnabled(true);
 	            	if(route!=null){
 	            		orders=(ArrayList<Order>) route.getOrders();
 	            		ArrayList<String> paramlist=new ArrayList<String>();
@@ -364,7 +363,6 @@ public class RouteDetailFragment extends Fragment {
 	   }
 	   @Override
 	public void onResume() {
-		
 		super.onResume();
 	}
 

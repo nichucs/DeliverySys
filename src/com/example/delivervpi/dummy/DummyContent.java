@@ -57,10 +57,15 @@ public class DummyContent {
 		ITEMS.add(item);
 		ITEM_MAP.put(item.id, item);
 	}
-	public static void addRoute(Route route){
+	public static boolean addRoute(Route route){
+		for(Route r: ROUTES){
+			if(r.route_id==route.route_id)
+				return false;
+		}
 		ROUTES.add(route);
 		ROUTE_MAP.put(route.route_id, route);
 //		Log.d("Nzm", "map size: "+ROUTE_MAP.size());
+		return true;
 	}
 
 	/**

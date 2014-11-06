@@ -79,7 +79,7 @@ public class RouteListAdapter extends BaseAdapter {
 			break;
 		case 3:
 			pending.setText("Delivered");
-			pending.setTextColor(Color.GREEN);
+			pending.setTextColor(Color.rgb(0, 100, 0));
 			
 			break;
 		case 4:
